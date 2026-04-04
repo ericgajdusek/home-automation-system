@@ -43,7 +43,7 @@ In this design, the controller sends user commands to the server, such as changi
 
 Here is a very simple animation giving a rough visual of how transactions flow through the system. In this case, the user is setting the lights level from 0% to 100%. [Link to full video.](https://youtu.be/N4yrDLcrTSg)
 
-![Communication Flow](./docs/assets/comm_flow.gif)
+![Communication Flow](./assets/comm_flow.gif)
 
 ## ACK-based messaging
 
