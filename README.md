@@ -46,11 +46,11 @@ See [Communication Architecture](./docs/communication_architecture.md) for full 
 This architecture separates user interaction, system coordination, and hardware control into different components. That separation makes the system easier to debug, extend, and document. It also supports future features such as remote web control, voice commands processed through the server, and more advanced automation logic without requiring major changes to the hardware nodes.
 
 ## Security Measures
----
+
 Security features are currently in development. Planned measures include encrypted communication, secure device authentication, and VPN-based remote access.
 
 ## Current Status
----
+
 - Wireless device communication implemented  
 - ESP32 nodes operational (lights, blinds)  
 - Touchscreen controller functional  
