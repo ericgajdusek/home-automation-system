@@ -59,7 +59,7 @@ Security features are currently in development. Planned measures include encrypt
 - Web app, scheduling, and user data features in progress
 
 ## Tech Stack
----
+
 - ESP32 (Embedded C/C++)  
 - MQTT / ESP-NOW  
 - Ubuntu Server (Linux)  
