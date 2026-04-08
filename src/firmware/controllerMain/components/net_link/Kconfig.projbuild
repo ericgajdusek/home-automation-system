@@ -1,0 +1,9 @@
+menu "App MQTT Settings"
+
+config APP_MQTT_URI
+    string "MQTT broker URI"
+    default "mqtt://localhost:1883"
+    help
+        URI of the MQTT broker
+
+endmenu
