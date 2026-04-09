@@ -5,6 +5,9 @@
 
 static const char *TAG = "net_link";
 static esp_mqtt_client_handle_t s_client = NULL;
+static bool lights_on = true;
+static bool blinds_open = true;
+const char* payload;
 
 esp_err_t net_link_init(void)
 {
@@ -23,7 +26,13 @@ esp_err_t net_link_init(void)
 esp_err_t net_link_publish_lights_toggle(void)
 {
     if (!s_client) return ESP_ERR_INVALID_STATE;
-    int msg_id = esp_mqtt_client_publish(s_client, "home/lights/toggle", "1", 0, 1, 0);
+    if (lights_on) {
+        payload = "OFF";
+    } else {
+        payload = "ON";
+    }
+    lights_on = !lights_on;
+    int msg_id = esp_mqtt_client_publish(s_client, "home/lights/command", payload, 0, 1, 0);
     return (msg_id >= 0) ? ESP_OK : ESP_FAIL;
 }
 
@@ -31,9 +40,13 @@ esp_err_t net_link_publish_blinds_move_steps(int steps)
 {
     if (!s_client) return ESP_ERR_INVALID_STATE;
 
-    char payload[32];
-    snprintf(payload, sizeof(payload), "%d", steps);
+    if (blinds_open) {
+        payload = "CLOSE";
+    } else {
+        payload = "OPEN";
+    }
+    blinds_open = !blinds_open;
 
-    int msg_id = esp_mqtt_client_publish(s_client, "home/blinds/move_steps", payload, 0, 1, 0);
+    int msg_id = esp_mqtt_client_publish(s_client, "home/blinds/command", payload, 0, 1, 0);
     return (msg_id >= 0) ? ESP_OK : ESP_FAIL;
 }
