@@ -3,11 +3,9 @@
 A local-first smart home system built on the ESP32-P4 featuring:
 
 - Touchscreen UI (LVGL)
-- Voice activation (AFE + Wake Word)
 - Smart blinds (stepper motor via ESP-NOW)
 - Smart lighting (ESP-NOW + MOSFET LED control)
 - Local MQTT + Server
-- Cloud sync (Firebase)
 
 ## Hardware
 - ESP32-P4 Touch Display
