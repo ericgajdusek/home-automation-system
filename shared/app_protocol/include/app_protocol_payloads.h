@@ -2,7 +2,7 @@
 #define APP_PROTOCOL_PAYLOADS_H
 
 #include <stdint.h>
-#include "app_protocol_validate.h"
+#include "app_protocol_err.h"
 
 typedef struct {
     uint8_t brightness;

@@ -2,7 +2,9 @@
 #define APP_PROTOCOL_RESULTS_H
 
 #include <stdint.h>
-#include "app_protocol_validate.h"
+#include <stdio.h>
+#include <string.h>
+#include "app_protocol_err.h"
 
 #ifdef __cplusplus
 extern "C" {

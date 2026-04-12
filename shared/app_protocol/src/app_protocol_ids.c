@@ -2,6 +2,8 @@
 
 int next_message_id_ctr = 0;
 int next_transaction_id_ctr = 0;
+device_id_t device_id = {0};
+boot_id_t boot_id = {0};
 
 int get_next_message_id_ctr() {
     return next_message_id_ctr++;
@@ -29,17 +31,24 @@ int build_device_id(device_id_t *out, const char *device_name, const char *mac_s
     return PROTOCOL_OK;
 }
 
+#include <stdlib.h>
+
 int generate_random_boot_id(boot_id_t *out) {
+    static const char charset[] =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz"
+        "0123456789";
+    size_t charset_len = sizeof(charset) - 1;
+
     if (!out) {
         return PROTOCOL_ERR_NULL_PTR;
     }
-    int err = snprintf(out->id, BOOT_ID_MAX_LENGTH, "boot_id_placeholder");
-    if (err < 0) {
-        return PROTOCOL_ERR_INVALID_ARG;
+
+    for (int i = 0; i < BOOT_ID_MAX_LENGTH - 1; i++) {
+        out->id[i] = charset[rand() % charset_len];
     }
-    if (err >= BOOT_ID_MAX_LENGTH) {
-        return PROTOCOL_ERR_TRUNCATED;
-    }
+
+    out->id[BOOT_ID_MAX_LENGTH - 1] = '\0';
     return PROTOCOL_OK;
 }
 

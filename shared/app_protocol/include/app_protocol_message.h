@@ -6,7 +6,7 @@
 #include "app_protocol_ids.h"
 #include "app_protocol_types.h"
 #include "app_protocol_payloads.h"
-#include "app_protocol_validate.h"
+#include "app_protocol_err.h"
 #include "app_protocol_results.h"
 
 typedef struct message_t {

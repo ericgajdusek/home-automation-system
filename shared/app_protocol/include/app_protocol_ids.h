@@ -1,12 +1,14 @@
 #ifndef APP_PROTOCOL_IDS_H
 #define APP_PROTOCOL_IDS_H
 
-#include "app_protocol_validate.h"
+#include <stdio.h>
+#include <string.h>
+#include "app_protocol_err.h"
 
-#define DEVICE_ID_MAX_LENGTH 16
+#define DEVICE_ID_MAX_LENGTH 20
 #define MESSAGE_ID_MAX_LENGTH 32
 #define TRANSACTION_ID_MAX_LENGTH 32
-#define BOOT_ID_MAX_LENGTH 8
+#define BOOT_ID_MAX_LENGTH 9
 
 typedef struct {
     char id[DEVICE_ID_MAX_LENGTH];
