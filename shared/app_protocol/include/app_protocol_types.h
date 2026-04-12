@@ -6,7 +6,6 @@ typedef enum {
     MSG_TYPE_COMMAND,
     MSG_TYPE_STATUS,
     MSG_TYPE_ACK,
-    MSG_TYPE_ERROR
 } message_type_t;
 
 typedef enum {

@@ -8,7 +8,13 @@
 extern "C" {
 #endif  
 
+uint8_t get_protocol_version_major() {
+    return PROTOCOL_VERSION_MAJOR;
+}
 
+uint8_t get_protocol_version_minor() {
+    return PROTOCOL_VERSION_MINOR;
+}
 
 #ifdef __cplusplus
 }

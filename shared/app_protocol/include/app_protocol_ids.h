@@ -1,13 +1,20 @@
 #ifndef APP_PROTOCOL_IDS_H
 #define APP_PROTOCOL_IDS_H
 
+#include "app_protocol_validate.h"
+
 #define DEVICE_ID_MAX_LENGTH 16
 #define MESSAGE_ID_MAX_LENGTH 32
 #define TRANSACTION_ID_MAX_LENGTH 32
+#define BOOT_ID_MAX_LENGTH 8
 
 typedef struct {
     char id[DEVICE_ID_MAX_LENGTH];
 } device_id_t;
+
+typedef struct {
+    char id[BOOT_ID_MAX_LENGTH];
+} boot_id_t;
 
 typedef struct {
     char id[MESSAGE_ID_MAX_LENGTH];
@@ -21,8 +28,18 @@ typedef struct {
 extern "C" {
 #endif
 
+device_id_t device_id;
+boot_id_t boot_id;
 int next_message_id;
 int next_transaction_id;
+int get_next_message_id_ctr();
+int get_next_transaction_id_ctr();
+int build_device_id(device_id_t *out, const char *device_name, const char *mac_suffix);
+int generate_random_boot_id(boot_id_t *out);
+int build_message_id(message_id_t *out, device_id_t sender_id, boot_id_t boot_id);
+int build_transaction_id(transaction_id_t *out, device_id_t sender_id, boot_id_t boot_id);
+device_id_t get_device_id();
+boot_id_t get_boot_id();
 
 #ifdef __cplusplus
 }

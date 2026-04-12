@@ -1,14 +1,10 @@
 idf_component_register(
     SRCS
         src/app_protocol_ids.c
-        src/app_protocol_messages.c
-        src/app_protocol_serialize.c
+        src/app_protocol_message.c
         src/app_protocol_validate.c
+        src/app_protocol_payloads.c
+        src/app_protocol_results.c
     INCLUDE_DIRS
         "include"
-    REQUIRES
-        mqtt
-    PRIV_REQUIRES
-        esp_event
-        nvs_flash
 )

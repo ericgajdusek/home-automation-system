@@ -1,0 +1,10 @@
+idf_component_register(
+    SRCS
+        "src/app_protocol_json.c"
+        "third-party/cJSON/cJSON.c"
+    INCLUDE_DIRS
+        "include"
+        "third-party/cJSON"
+    REQUIRES
+        app_protocol
+)
