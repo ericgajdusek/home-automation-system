@@ -1,0 +1,52 @@
+name: Build
+
+on: push
+
+jobs:
+  protocol:
+    name: Build protocol + run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Configure root test build
+        run: cmake -S . -B build -DBUILD_TESTING=ON
+
+      - name: Build root test target
+        run: cmake --build build --parallel
+
+      - name: Run tests
+        run: ctest --test-dir build --output-on-failure
+
+  # server:
+  #   name: Build server
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v6
+
+  #     - name: Configure server
+  #       run: cmake -S server -B server/build
+
+  #     - name: Build server
+  #       run: cmake --build server/build --parallel
+
+  controller:
+    name: Build controller firmware
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Build controller with ESP-IDF
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: v5.5.2
+          target: esp32
+          path: firmware/controller
