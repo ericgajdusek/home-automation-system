@@ -48,5 +48,5 @@ jobs:
         uses: espressif/esp-idf-ci-action@v1
         with:
           esp_idf_version: v5.5.2
-          target: esp32
+          target: esp32p4
           path: firmware/controllers/controller_waveshare_p4_touch_7b
