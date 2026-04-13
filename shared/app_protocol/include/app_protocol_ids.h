@@ -30,10 +30,10 @@ typedef struct {
 extern "C" {
 #endif
 
-device_id_t device_id;
-boot_id_t boot_id;
-int next_message_id;
-int next_transaction_id;
+extern device_id_t device_id;
+extern boot_id_t boot_id;
+extern int next_message_id_ctr;
+extern int next_transaction_id_ctr;
 int get_next_message_id_ctr();
 int get_next_transaction_id_ctr();
 int build_device_id(device_id_t *out, const char *device_name, const char *mac_suffix);

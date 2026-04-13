@@ -18,8 +18,8 @@ void test_message_round_trip_lights(void)
     action_t action = ACTION_SET_LIGHTS;
     char json[512];
 
-    build_device_id(&target, "lights-01", "A3FM45");
     build_device_id(&device_id, "ctrl-01", "B7G8H9");
+    build_device_id(&target, "lights-01", "A3FM45");
     generate_random_boot_id(&boot_id);
     build_message_id(&message_id, device_id, boot_id);
     build_lights_payload(&payload, 40);

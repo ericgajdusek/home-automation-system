@@ -1,9 +1,9 @@
 #include "app_protocol_ids.h"
 
-int next_message_id_ctr = 0;
-int next_transaction_id_ctr = 0;
 device_id_t device_id = {0};
 boot_id_t boot_id = {0};
+int next_message_id_ctr = 0;
+int next_transaction_id_ctr = 0;
 
 int get_next_message_id_ctr() {
     return next_message_id_ctr++;
