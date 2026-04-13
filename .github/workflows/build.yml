@@ -49,4 +49,4 @@ jobs:
         with:
           esp_idf_version: v5.5.2
           target: esp32
-          path: firmware/controller
+          path: firmware/controllers/controller_waveshare_p4_touch_7b
