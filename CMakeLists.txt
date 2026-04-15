@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(protocol_tests C)
+project(ap_tests C)
 
 include(CTest)
 
@@ -11,18 +11,18 @@ target_include_directories(unity PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/external/Unity/src
 )
 
-add_subdirectory(shared/app_protocol)
-add_subdirectory(shared/app_protocol_json)
+add_subdirectory(shared/ap_core)
+add_subdirectory(shared/ap_codec_json)
 
 if(BUILD_TESTING)
-    add_executable(test_app_protocol_json
-        tests/test_app_protocol_json.c
+    add_executable(test_ap_codec_json
+        tests/test_ap_codec_json.c
     )
 
-    target_link_libraries(test_app_protocol_json PRIVATE
+    target_link_libraries(test_ap_codec_json PRIVATE
         unity
-        app_protocol_json
+        ap_codec_json
     )
 
-    add_test(NAME test_app_protocol_json COMMAND test_app_protocol_json)
+    add_test(NAME test_ap_codec_json COMMAND test_ap_codec_json)
 endif()

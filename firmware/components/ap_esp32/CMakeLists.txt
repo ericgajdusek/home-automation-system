@@ -1,0 +1,11 @@
+idf_component_register(
+    SRCS
+        src/ap_node.c
+    INCLUDE_DIRS
+        "include"
+    REQUIRES
+        ap_core
+        ap_node_runtime
+        ap_node_transport_mqtt
+        ap_node_transport_espnow
+)
