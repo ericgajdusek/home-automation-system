@@ -1,12 +1,6 @@
 idf_component_register(
     SRCS
-        src/node_messaging.c
-        src/pending_table.c
-        src/retry.c
-        src/dispatch.c
-        src/event_queue.c
+        src/ap_esp32_runtime.c
     INCLUDE_DIRS
         "include"
-    REQUIRES
-        app_protocol_json
 )

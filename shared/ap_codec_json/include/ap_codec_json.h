@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "ap_core_message.h"
-#include "ap_core_validate.h"
+#include "ap_message.h"
+#include "ap_message_validate.h"
 #include "cJSON.h"
 
 #ifdef __cplusplus

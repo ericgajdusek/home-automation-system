@@ -1,9 +1,0 @@
-#ifndef AP_CORE_ERR_H
-#define AP_CORE_ERR_H
-
-#define PROTOCOL_OK 0
-#define PROTOCOL_ERR_NULL_PTR -1
-#define PROTOCOL_ERR_INVALID_ARG -2
-#define PROTOCOL_ERR_TRUNCATED -3
-
-#endif // AP_CORE_ERR_H
