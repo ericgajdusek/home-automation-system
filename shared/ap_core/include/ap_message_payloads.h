@@ -15,15 +15,15 @@ typedef struct {
 typedef union {
     lights_payload_t lights;
     blinds_payload_t blinds;
-} payload_t;
+} ap_payload_t;
 
 #ifdef __cplusplus
 extern "C" {
 #endif 
 
-int ap_build_lights_payload(payload_t *payload, uint8_t brightness);
+int ap_build_lights_payload(ap_payload_t *payload, uint8_t brightness);
 
-int ap_build_blinds_payload(payload_t *payload, uint8_t position);
+int ap_build_blinds_payload(ap_payload_t *payload, uint8_t position);
 
 #ifdef __cplusplus
 }

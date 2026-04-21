@@ -102,39 +102,39 @@ static int json_read_u32_field(const cJSON *parent, const char *name, uint32_t *
     return 0;
 }
 
-static int build_json_payload(cJSON *payload_json, const message_t *msg) {
+static int build_json_payload(cJSON *payload_json, const ap_message_t *msg) {
     if (payload_json == NULL || msg == NULL) return -1;
     switch (msg->action) {
-        case ACTION_NONE:
+        case AP_ACTION_NONE:
             return 0;
-        case ACTION_SET_LIGHTS:
+        case AP_ACTION_SET_LIGHTS:
             return json_add_u32(payload_json, "brightness", msg->payload.lights.brightness);
-        case ACTION_SET_BLINDS:
+        case AP_ACTION_SET_BLINDS:
             return json_add_u32(payload_json, "position", msg->payload.blinds.position);
         default:
             return -1;
     }
 }
 
-static int build_json_result(cJSON *result_json, const message_t *msg) {
+static int build_json_result(cJSON *result_json, const ap_message_t *msg) {
     if (result_json == NULL || msg == NULL) return -1;
     if (json_add_u32(result_json, "code", msg->result.code) != 0)return -1;
     if (json_add_string(result_json, "message", msg->result.message) != 0) return -1;
     return 0;
 }
 
-static int parse_json_payload(const cJSON *payload_json, message_t *out_msg) {
+static int parse_json_payload(const cJSON *payload_json, ap_message_t *out_msg) {
     uint8_t temp_u8;
     if (payload_json == NULL || out_msg == NULL) return -1;
     switch (out_msg->action) {
-        case ACTION_NONE:
+        case AP_ACTION_NONE:
             memset(&out_msg->payload, 0, sizeof(out_msg->payload));
             return 0;
-        case ACTION_SET_LIGHTS:
+        case AP_ACTION_SET_LIGHTS:
             if (json_read_u8_field(payload_json, "brightness", &temp_u8) != 0) return -1;
             out_msg->payload.lights.brightness = temp_u8;
             return 0;
-        case ACTION_SET_BLINDS:
+        case AP_ACTION_SET_BLINDS:
             if (json_read_u8_field(payload_json, "position", &temp_u8) != 0) return -1;
             out_msg->payload.blinds.position = temp_u8;
             return 0;
@@ -143,7 +143,7 @@ static int parse_json_payload(const cJSON *payload_json, message_t *out_msg) {
     }
 }
 
-static int parse_json_result(const cJSON *result_json, message_t *out_msg) {
+static int parse_json_result(const cJSON *result_json, ap_message_t *out_msg) {
     if (result_json == NULL || out_msg == NULL) return -1;
 
     if (json_read_u8_field(result_json, "code", &out_msg->result.code) != 0) return -1;
@@ -159,12 +159,12 @@ static int parse_json_result(const cJSON *result_json, message_t *out_msg) {
 Optional basic validation.
 Tighten this later if you want stricter protocol rules.
 */
-static int validate_message_basic(const message_t *msg) {
+static int validate_message_basic(const ap_message_t *msg) {
     if (msg == NULL) return -1;
     switch (msg->action) {
-        case ACTION_NONE:
-        case ACTION_SET_LIGHTS:
-        case ACTION_SET_BLINDS:
+        case AP_ACTION_NONE:
+        case AP_ACTION_SET_LIGHTS:
+        case AP_ACTION_SET_BLINDS:
             break;
         default:
             return -1;
@@ -174,7 +174,7 @@ static int validate_message_basic(const message_t *msg) {
 
 /* ------------------------- Serialization ------------------------- */
 
-int ap_encode_json(const message_t *msg, char *out_buf, size_t out_buf_size) {
+int ap_encode_json(const ap_message_t *msg, char *out_buf, size_t out_buf_size) {
     cJSON *root = NULL;
     cJSON *payload_json = NULL;
     cJSON *result_json = NULL;
@@ -259,13 +259,13 @@ cleanup:
 
 /* ------------------------- Deserialization ------------------------- */
 
-int ap_decode_json(const uint8_t *buffer, size_t buffer_size, message_t *out_msg)
+int ap_decode_json(const uint8_t *buffer, size_t buffer_size, ap_message_t *out_msg)
 {
     char *json_text = NULL;
     cJSON *root = NULL;
     const cJSON *payload_json = NULL;
     const cJSON *result_json = NULL;
-    message_t temp_msg;
+    ap_message_t temp_msg;
     uint8_t temp_u8;
     uint32_t temp_u32;
     int rc = -1;
@@ -314,7 +314,7 @@ int ap_decode_json(const uint8_t *buffer, size_t buffer_size, message_t *out_msg
     if (json_read_u8_field(root, "message_type", &temp_u8) != 0) {
         goto cleanup;
     }
-    temp_msg.message_type = (message_type_t)temp_u8;
+    temp_msg.message_type = (ap_message_type_t)temp_u8;
     if (json_read_string_field(root, "ack_for_message_id",
                                temp_msg.ack_for_message_id.value,
                                sizeof(temp_msg.ack_for_message_id.value)) != 0) {
@@ -323,7 +323,7 @@ int ap_decode_json(const uint8_t *buffer, size_t buffer_size, message_t *out_msg
     if (json_read_u8_field(root, "action", &temp_u8) != 0) {
         goto cleanup;
     }
-    temp_msg.action = (action_t)temp_u8;
+    temp_msg.action = (ap_action_t)temp_u8;
     if (json_get_required_object(root, "payload", &payload_json) != 0) {
         goto cleanup;
     }

@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-int ap_validate_message(const message_t* msg);
+int ap_validate_message(const ap_message_t* msg);
 
 #ifdef __cplusplus
 }

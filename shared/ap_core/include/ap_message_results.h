@@ -25,13 +25,13 @@
 typedef struct {
     uint8_t code;
     char message[64];
-} result_t;
+} ap_result_t;
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-int ap_build_result(result_t *result, uint8_t code, const char *message);
+int ap_build_result(ap_result_t *result, uint8_t code, const char *message);
 
 #ifdef __cplusplus
 }

@@ -1,6 +1,6 @@
 #include "ap_message_payloads.h"
 
-int ap_build_lights_payload(payload_t *payload, uint8_t brightness) {
+int ap_build_lights_payload(ap_payload_t *payload, uint8_t brightness) {
     if (!payload) {
         return AP_ERR_INVALID_ARG;
     }
@@ -11,7 +11,7 @@ int ap_build_lights_payload(payload_t *payload, uint8_t brightness) {
     return AP_OK;
 }
 
-int ap_build_blinds_payload(payload_t *payload, uint8_t position) {
+int ap_build_blinds_payload(ap_payload_t *payload, uint8_t position) {
     if (!payload) {
         return AP_ERR_NULL_PTR;
     }

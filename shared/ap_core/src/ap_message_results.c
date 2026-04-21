@@ -1,6 +1,6 @@
 #include "ap_message_results.h"
 
-int ap_build_result(result_t *result, uint8_t code, const char *message) {
+int ap_build_result(ap_result_t *result, uint8_t code, const char *message) {
     if (!result || !message) {
         return AP_ERR_NULL_PTR;
     }

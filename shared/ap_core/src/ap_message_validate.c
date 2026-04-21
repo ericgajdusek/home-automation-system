@@ -1,6 +1,6 @@
 #include "ap_message_validate.h"
 
-int ap_validate_message(const message_t* msg) {
+int ap_validate_message(const ap_message_t* msg) {
     if (!msg) {
         return AP_ERR_NULL_PTR;
     }

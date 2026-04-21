@@ -14,8 +14,8 @@
 extern "C" {
 #endif
 
-int ap_encode_json(const message_t *msg, char *out_buf, size_t out_buf_size);
-int ap_decode_json(const uint8_t *buffer, size_t buffer_size, message_t *out_msg);
+int ap_encode_json(const ap_message_t *msg, char *out_buf, size_t out_buf_size);
+int ap_decode_json(const uint8_t *buffer, size_t buffer_size, ap_message_t *out_msg);
 
 #ifdef __cplusplus
 }

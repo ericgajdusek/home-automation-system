@@ -8,8 +8,8 @@ int esp32_transport_mqtt_connect_to_broker(char *uri) {
     return esp_mqtt_client_start(client);
 }
 
-int esp32_transport_mqtt_publish(const char *topic, const char *payload, size_t payload_len) {
-    int ret = esp_mqtt_client_publish(client, topic, payload, payload_len, 1, 0);
+int esp32_transport_mqtt_enqueue(const char *topic, const char *payload, size_t payload_len) {
+    int ret = esp_mqtt_client_enqueue(client, topic, payload, payload_len, 1, 0);
     return (ret >= 0) ? ESP_OK : ESP_FAIL;
 }
 
