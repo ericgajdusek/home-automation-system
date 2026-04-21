@@ -15,6 +15,17 @@ add_subdirectory(shared/ap_core)
 add_subdirectory(shared/ap_codec_json)
 
 if(BUILD_TESTING)
+    add_executable(test_ap_core
+        tests/test_ap_core.c
+    )
+
+    target_link_libraries(test_ap_core PRIVATE
+        unity
+        ap_core
+    )
+
+    add_test(NAME test_ap_core COMMAND test_ap_core)
+
     add_executable(test_ap_codec_json
         tests/test_ap_codec_json.c
     )

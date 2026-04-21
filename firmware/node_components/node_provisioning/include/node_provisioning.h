@@ -1,5 +1,5 @@
-#ifndef ESP32_PROVISIONING_H
-#define ESP32_PROVISIONING_H
+#ifndef NODE_PROVISIONING_H
+#define NODE_PROVISIONING_H
 #include "ap_message.h"
 
 typedef enum {
@@ -17,4 +17,4 @@ typedef struct {
     /* Fill in the rest of your provisioning fields */
 } provisioning_message_t;
 
-#endif // ESP32_PROVISIONING_H
+#endif // NODE_PROVISIONING_H
